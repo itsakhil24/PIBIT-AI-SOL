@@ -1,0 +1,82 @@
+
+### parse_resume.py
+```python
+import json
+import sys
+
+def parse_resume(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    resume_data = {
+        "personal_information": {},
+        "skills": {},
+        "internships": [],
+        "projects": [],
+        "certificates": [],
+        "achievements": [],
+        "education": []
+    }
+
+    current_section = None
+
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+
+        if line.startswith("Linkedin:"):
+            resume_data["personal_information"]["linkedin"] = line.split("Linkedin: ")[1]
+        elif line.startswith("Email:"):
+            resume_data["personal_information"]["email"] = line.split("Email: ")[1]
+        elif line.startswith("GitHub:"):
+            resume_data["personal_information"]["github"] = line.split("GitHub: ")[1]
+        elif line.startswith("Mobile:"):
+            resume_data["personal_information"]["mobile"] = line.split("Mobile: ")[1]
+        elif line.isupper():
+            current_section = line.lower().replace(' ', '_')
+        else:
+            if current_section == "skills":
+                if line.startswith("• Languages:"):
+                    resume_data["skills"]["languages"] = line.split("• Languages: ")[1].split(", ")
+                elif line.startswith("• Frameworks:"):
+                    resume_data["skills"]["frameworks"] = line.split("• Frameworks: ")[1].split(", ")
+                elif line.startswith("• Tools/Platforms:"):
+                    resume_data["skills"]["tools_platforms"] = line.split("• Tools/Platforms: ")[1].split(", ")
+                elif line.startswith("• Soft Skills:"):
+                    resume_data["skills"]["soft_skills"] = line.split("• Soft Skills: ")[1].split(", ")
+            elif current_section == "internship":
+                if line.startswith("• "):
+                    resume_data["internships"].append({"title": line.split("• ")[1]})
+                elif "overview" in resume_data["internships"][-1]:
+                    resume_data["internships"][-1]["tech_stacks_used"] = line.split("Tech stacks used: ")[1].split(", ")
+                else:
+                    resume_data["internships"][-1]["overview"] = line
+            elif current_section == "projects":
+                if line.startswith("• "):
+                    resume_data["projects"].append({"title": line.split("• ")[1]})
+                elif "description" in resume_data["projects"][-1]:
+                    resume_data["projects"][-1]["tech"] = line.split("Tech: ")[1].split(", ")
+                else:
+                    resume_data["projects"][-1]["description"] = line
+            elif current_section == "certificates":
+                if line.startswith("• "):
+                    title, date = line.split(" by ")
+                    resume_data["certificates"].append({"title": title.split("• ")[1], "date": date.split(" ")[-1].strip("()")})
+            elif current_section == "achievements":
+                resume_data["achievements"].append({"description": line.split("• ")[1]})
+            elif current_section == "education":
+                if line.startswith("Bachelor"):
+                    resume_data["education"].append({"institution": lines[lines.index(line)-1], "degree": line, "cgpa": lines[lines.index(line)+1].split("CGPA: ")[1], "date": lines[lines.index(line)+2].strip("()")})
+                elif line.startswith("Intermediate"):
+                    resume_data["education"].append({"institution": lines[lines.index(line)-1], "degree": line, "cgpa": lines[lines.index(line)+1].split("CGPA: ")[1], "date": lines[lines.index(line)+2].strip("()")})
+                elif line.startswith("Matriculation"):
+                    resume_data["education"].append({"institution": lines[lines.index(line)-1], "degree": line, "percentage": lines[lines.index(line)+1].split("Percentage: ")[1], "date": lines[lines.index(line)+2].strip("()")})
+
+    return resume_data
+
+if __name__ == "__main__":
+    input_file = sys.argv[1]
+    parsed_data = parse_resume(input_file)
+    with open("output.json", "w") as json_file:
+        json.dump(parsed_data, json_file, indent=4)
