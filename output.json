@@ -1,0 +1,88 @@
+{
+    "personal_information": {
+        "linkedin": "www.linkedin.com/in/medho-satya-aditya-akhil-07390024b/",
+        "email": "adityaakhil2324@gmail.com",
+        "github": "github.com/itsakhil24",
+        "mobile": "+91 8074555031"
+    },
+    "skills": {
+        "languages": ["C++", "JavaScript", "Python"],
+        "frameworks": ["HTML", "React", "Node JS"],
+        "tools_platforms": ["MySQL", "MongoDB", "Tableau"],
+        "soft_skills": ["Problem-Solving Skills", "Team Player", "Project Management", "Adaptability"]
+    },
+    "internships": [
+        {
+            "title": "Data Structures and Algorithms – self-paced course (June’23 – July’23)",
+            "overview": "In an 8-week training period, DSA concepts enable efficient real-life implementations through dynamic memory, varied data types, algorithms, and Big O analysis, solving diverse problems effectively.",
+            "tech_stacks_used": ["C++ & Java"]
+        },
+        {
+            "title": "Cyber Security Internship (August’21 - October’21)",
+            "overview": "In a 3-month internship program at shapeai AKA Devtown, I got exposure to cyber security tools and various techniques to defend the system firewall.",
+            "tech_stacks_used": ["OS"]
+        }
+    ],
+    "projects": [
+        {
+            "title": "HOSPITAL MANAGEMENT SYSTEM (MERN STACK) (July’24)",
+            "description": "Built a Hospital Management Website to add and delete hospitals with specialties and ratings.",
+            "tech": ["REACT", "Nodejs", "MongoDB"]
+        },
+        {
+            "title": "AI - VIRTUAL MOUSE (April’23)",
+            "description": "Controlling the mouse with hand gestures for the use of AI in the medical industry.",
+            "tech": ["Python", "OpenCV", "Mediapipe", "pyautogui"]
+        },
+        {
+            "title": "TO DO LIST (November’22)",
+            "description": "Using this Application, users get to know the targets of the day easily.",
+            "tech": ["HTML", "CSS", "JavaScript"]
+        }
+    ],
+    "certificates": [
+        {
+            "title": "MongoDB for students by MongoDB",
+            "date": "July’24"
+        },
+        {
+            "title": "Data Visualisation with Tableau by Coursera",
+            "date": "April’24"
+        },
+        {
+            "title": "Data Structures & Algorithms Self-Paced by GFG",
+            "date": "June’23"
+        }
+    ],
+    "achievements": [
+        {
+            "description": "150+ questions solved in DSA on GeeksforGeeks"
+        },
+        {
+            "description": "120+ questions solved in Python on Hackerrank"
+        },
+        {
+            "description": "One among Dean’s top 30% students at University for good academic performance and extra-curricular activities."
+        }
+    ],
+    "education": [
+        {
+            "institution": "Lovely Professional University, Punjab, India",
+            "degree": "Bachelor of Technology - Computer Science and Engineering",
+            "cgpa": "7:00",
+            "date": "Since October 2021"
+        },
+        {
+            "institution": "Sri Chaitanya Jr College, Srikakulam, AP",
+            "degree": "Intermediate",
+            "cgpa": "9.5",
+            "date": "June 2018 - March 2020"
+        },
+        {
+            "institution": "Sri Chaitanya School, Srikakulam, AP",
+            "degree": "Matriculation",
+            "percentage": "9.8",
+            "date": "June 2017 - March 2018"
+        }
+    ]
+}
